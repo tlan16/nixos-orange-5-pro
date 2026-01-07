@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     socle = {
-      url = "github:dvdjv/socle";
+      url = "github:tlan16/nixos-orange-5-pro";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -24,6 +24,15 @@
           socle.nixosModules.orangepi-5-plus
           ./confguration.nix
           ./orangepi5plus.nix
+        ];
+      };
+
+      orangepi5pro = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          socle.nixosModules.orangepi-5-pro
+          ./confguration.nix
+          ./orangepi5pro.nix
         ];
       };
     };

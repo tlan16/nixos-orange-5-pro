@@ -33,6 +33,11 @@
         self.nixosModules.orangepi-5-plus
         { system.stateVersion = "24.11"; }
       ]).config.system.build.sdImage;
+
+      orangepi-5-pro = (pkgs.nixos [
+        self.nixosModules.orangepi-5-pro
+        { system.stateVersion = "24.11"; }
+      ]).config.system.build.sdImage;
     });
 
     templates = rec {
