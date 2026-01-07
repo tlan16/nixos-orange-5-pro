@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: socle-nix-builder:latest
+    # Bind mount current repo as /workspace inside the container
+    volumes:
+      - ./:/workspace
+      # Persist the entire Nix store and state across runs for caching
+      - nix:/nix
+      # Optional: persist root home to cache git config and downloads
+      - root_home:/root
+    # Required for Nix to run reliably inside Docker
+    privileged: true
+    environment:
+      NIX_CONFIG: "experimental-features = nix-command flakes"
+    working_dir: /workspace
+    # Default command does nothing; script/build.sh will override with the proper build invocation
+    command: ["sleep", "infinity"]
+
+volumes:
+  nix:
+  root_home:
