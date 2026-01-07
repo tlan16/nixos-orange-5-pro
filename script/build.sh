@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Orchestrate building an Orange Pi SD image inside a Nix-enabled Docker container.
 # Usage:
-#   script/build.sh [--board orangepi5|orangepi5plus] [--mode template|checks]
+#   script/build.sh [--board orangepi5|orangepi5plus|orangepi5pro] [--mode template|checks]
 #
 # Modes:
 #   template - follows README flow using the provided flake template (default)
@@ -32,8 +32,8 @@ while test $# -gt 0; do
 
 done
 
-if [[ "$BOARD" != "orangepi5" && "$BOARD" != "orangepi5plus" ]]; then
-  echo "--board must be 'orangepi5' or 'orangepi5plus'" >&2
+if [[ "$BOARD" != "orangepi5" && "$BOARD" != "orangepi5plus" && "$BOARD" != "orangepi5pro" ]]; then
+  echo "--board must be 'orangepi5', 'orangepi5plus', or 'orangepi5pro'" >&2
   exit 2
 fi
 
@@ -88,6 +88,7 @@ esac
 case "$BOARD" in
   orangepi5) BOARD_ATTR=orangepi-5 ;;
   orangepi5plus) BOARD_ATTR=orangepi-5-plus ;;
+  orangepi5pro) BOARD_ATTR=orangepi-5-pro ;;
   *) echo "Unknown board: $BOARD" >&2; exit 1 ;;
 esac
 nix build .#checks.${SYS_ATTR}.${BOARD_ATTR}

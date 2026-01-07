@@ -234,4 +234,74 @@ self: rec {
       };
     };
   };
+
+  orangepi-5-pro = { pkgs, ... }: {
+    imports = [ rk3588x-board ];
+
+    board = {
+      name = "Orange Pi 5 Pro";
+      # Orange Pi 5 Pro uses RK3588S like 5 Plus, so we use the same u-boot
+      uBootPackage = pkgs.ubootOrangePi5Plus;
+
+      hardware.available = {
+        leds = {
+          overlay = "rk3588-opi5plus-disable-leds";
+          inverse = true;
+          description = "Whether to disable LEDs";
+        };
+
+        can0-m0 = { overlay = "rk3588-can0-m0"; };
+        can1-m0 = { overlay = "rk3588-can1-m0"; };
+
+        dmc = { overlay = "rk3588-dmc"; };
+
+        gc5035 = { overlay = "rk3588-opi5plus-gc5035"; };
+
+        hdmi2-8k = { overlay = "rk3588-hdmi2-8k"; };
+        hdmirx = { overlay = "rk3588-hdmirx"; };
+
+        i2c2-m0 = { overlay = "rk3588-i2c2-m0"; };
+        i2c2-m4 = { overlay = "rk3588-i2c2-m4"; };
+        i2c4-m3 = { overlay = "rk3588-i2c4-m3"; };
+        i2c5-m3 = { overlay = "rk3588-i2c5-m3"; };
+        i2c8-m2 = { overlay = "rk3588-i2c8-m2"; };
+
+        lcd = { overlay = "rk3588-opi5plus-lcd"; };
+
+        ov13850 = { overlay = "rk3588-opi5plus-ov13850"; };
+        ov13855 = { overlay = "rk3588-opi5plus-ov13855"; };
+
+        pwm0-m0 = { overlay = "rk3588-pwm0-m0"; };
+        pwm0-m2 = { overlay = "rk3588-pwm0-m2"; };
+        pwm1-m0 = { overlay = "rk3588-pwm1-m0"; };
+        pwm1-m2 = { overlay = "rk3588-pwm1-m2"; };
+        pwm11-m0 = { overlay = "rk3588-pwm11-m0"; };
+        pwm12-m0 = { overlay = "rk3588-pwm12-m0"; };
+        pwm13-m0 = { overlay = "rk3588-pwm13-m0"; };
+        pwm14-m0 = { overlay = "rk3588-pwm14-m0"; };
+        pwm14-m2 = { overlay = "rk3588-pwm14-m2"; };
+
+        spi0-m2-cs0-cs1-spidev = { overlay = "rk3588-spi0-m2-cs0-cs1-spidev"; };
+        spi0-m2-cs0-spidev = { overlay = "rk3588-spi0-m2-cs0-spidev"; };
+        spi0-m2-cs1-spidev = { overlay = "rk3588-spi0-m2-cs1-spidev"; };
+        spi4-m1-cs0-cs1-spidev = { overlay = "rk3588-spi4-m1-cs0-cs1-spidev"; };
+        spi4-m1-cs0-spidev = { overlay = "rk3588-spi4-m1-cs0-spidev"; };
+        spi4-m1-cs1-spidev = { overlay = "rk3588-spi4-m1-cs1-spidev"; };
+        spi4-m2-cs0-spidev = { overlay = "rk3588-spi4-m2-cs0-spidev"; };
+
+        ssd-sata0 = { overlay = "rk3588-ssd-sata0"; };
+        ssd-sata2 = { overlay = "rk3588-ssd-sata2"; };
+
+        uart1-m1 = { overlay = "rk3588-uart1-m1"; };
+        uart3-m1 = { overlay = "rk3588-uart3-m1"; };
+        uart4-m2 = { overlay = "rk3588-uart4-m2"; };
+        uart6-m1 = { overlay = "rk3588-uart6-m1"; };
+        uart7-m2 = { overlay = "rk3588-uart7-m2"; };
+        uart8-m1 = { overlay = "rk3588-uart8-m1"; };
+
+        wifi-ap6275p = { overlay = "rk3588-wifi-ap6275p"; };
+        wifi-pcie = { overlay = "rk3588-wifi-pcie"; };
+      };
+    };
+  };
 }

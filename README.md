@@ -4,6 +4,7 @@
 A collection of packages and modules to support NixOS on single-board computers based on the RK3588(S) SoC. Currently, the following boards are supported:
 * Orange Pi 5
 * Orange Pi 5 Plus
+* Orange Pi 5 Pro
 
 ## Features
 * Linux Kernel 6.1
@@ -14,7 +15,7 @@ A collection of packages and modules to support NixOS on single-board computers 
 Socle provides a template you can use as a base for your new NixOS installation.
 
 ### Building an SD Image
-The easiest way to build an image is to use the provided flake template. The template contains NixOS configurations for Orange Pi 5 and Orange Pi 5 Plus.
+The easiest way to build an image is to use the provided flake template. The template contains NixOS configurations for Orange Pi 5, Orange Pi 5 Plus, and Orange Pi 5 Pro.
 
 1. Clone the template:
    ```
@@ -39,18 +40,22 @@ The easiest way to build an image is to use the provided flake template. The tem
    Uncomment the timezone option and insert your timezone.
    
    You can tune other options as well. Consult the [NixOS manual](https://nixos.org/manual/nixos/stable/options) for the list of possible options.
-   Board-specific options are set in the files `orangepi5.nix` and `orangepi5plus.nix`. Notice, that the default network name differs between the boards.
+   Board-specific options are set in the files `orangepi5.nix`, `orangepi5plus.nix`, and `orangepi5pro.nix`. Notice that the default network name differs between the boards.
 4. Build the image
 
    On a `aarch64-linux` machine:
    ```
    nix build .#nixosConfigurations.orangepi5.config.system.build.sdImage
    ```
-   to build an Orange Pi 5 image; or:
+   to build an Orange Pi 5 image;
    ```
    nix build .#nixosConfigurations.orangepi5plus.config.system.build.sdImage
    ```
-   to build an Orange Pi 5 Plus image.
+   to build an Orange Pi 5 Plus image; or
+   ```
+   nix build .#nixosConfigurations.orangepi5pro.config.system.build.sdImage
+   ```
+   to build an Orange Pi 5 Pro image.
 
    On a `x86_64-linux` machine:
 

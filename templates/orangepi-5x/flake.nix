@@ -26,6 +26,15 @@
           ./orangepi5plus.nix
         ];
       };
+
+      orangepi5pro = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          socle.nixosModules.orangepi-5-pro
+          ./confguration.nix
+          ./orangepi5pro.nix
+        ];
+      };
     };
   };
 }
