@@ -1,3 +1,8 @@
+> [!WARNING]  
+> This project is at early stages of development. Use at your own risk.
+
+---
+
 # socle
 [Wikipedia](https://en.wikipedia.org/wiki/Socle_(architecture)): In architecture, a socle is a short plinth used to support a pedestal, sculpture, or column.
 
